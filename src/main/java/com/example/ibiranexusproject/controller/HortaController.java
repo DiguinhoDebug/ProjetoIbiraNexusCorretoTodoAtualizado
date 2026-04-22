@@ -1,8 +1,11 @@
 package com.example.ibiranexusproject.controller;
 
+import com.example.ibiranexusproject.model.HortaModel;
 import com.example.ibiranexusproject.service.HortaService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -12,5 +15,40 @@ public class HortaController {
 
     public HortaController(HortaService service){
         this.service = service;
+    }
+
+    @GetMapping
+    public List<HortaModel> listar(){
+        return service.listar();
+    }
+
+    @PostMapping
+    public HortaModel cadastrar(@RequestBody @Valid HortaModel horta){
+        return service.cadastrar(horta);
+    }
+
+    @GetMapping("/{nome}")
+    public List<HortaModel> buscarPorNome(String nome){
+        return service.buscarPorNome(nome);
+    }
+
+    @GetMapping("/{categoria}")
+    public List<HortaModel> buscarPorCategoria(String categoria){
+        return service.buscarPorCategoria(categoria);
+    }
+
+    @GetMapping("/{localizacao}")
+    public List<HortaModel> buscarPorLocalizacao(String localizacao){
+        return service.buscarPorLocalizacao(localizacao);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        service.deletar(id);
+    }
+
+    public HortaModel alterar(@PathVariable Long id,@RequestBody @Valid HortaModel horta){
+        service.deletar(id);
+        return service.cadastrar(horta);
     }
 }

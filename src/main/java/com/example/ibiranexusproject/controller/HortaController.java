@@ -27,18 +27,18 @@ public class HortaController {
         return service.cadastrar(horta);
     }
 
-    @GetMapping("/{nome}")
-    public List<HortaModel> buscarPorNome(String nome){
+    @GetMapping("/buscarPorNome")
+    public List<HortaModel> buscarPorNome(@RequestParam String nome){
         return service.buscarPorNome(nome);
     }
 
-    @GetMapping("/{categoria}")
-    public List<HortaModel> buscarPorCategoria(String categoria){
+    @GetMapping("/buscarPorCategoria")
+    public List<HortaModel> buscarPorCategoria(@RequestParam String categoria){
         return service.buscarPorCategoria(categoria);
     }
 
-    @GetMapping("/{localizacao}")
-    public List<HortaModel> buscarPorLocalizacao(String localizacao){
+    @GetMapping("/buscarPorLocalizacao")
+    public List<HortaModel> buscarPorLocalizacao(@RequestParam String localizacao){
         return service.buscarPorLocalizacao(localizacao);
     }
 
